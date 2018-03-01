@@ -1,35 +1,32 @@
 import React, { Component } from 'react';
 import LoginButton from './LoginButton';
-import european-pantry-img from '../img/european-pantry.jpeg';
-import finger-food-chips-img from '../img/finger-food-chips.jpg';
-import map-people-planning-img from '../img/map-people-planning.jpeg';
-
+import {Link} from 'react-router-dom';
 
 class Header extends Component {
   render() {
     return (
       <div>
-        <div className="container-fluid header-top-level">
-          <nav className="navbar fixed-top">
-            <h1 className="header-text"><span id="header-first-letter">G</span>lobal<span id="header-first-letter"> R</span>ecipe<span id="header-first-letter"> N</span>etwork</h1>
-            <LoginButton id={"header-login-logout"}/>
-          </nav>
-        <section className="jumbotron">
-          <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img class="d-block w-100" src={european-pantry-img} alt="First slide" />
-              </div>
-              <div class="carousel-item">
-                <img class="d-block w-100" src={finger-food-chips-img} alt="Second slide" />
-              </div>
-              <div class="carousel-item">
-                <img class="d-block w-100" src={map-people-planning-img} alt="Third slide" />
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <a className="navbar-brand" href="#"><h1 className="header-text"><span id="header-first-letter">G</span>lobal<span id="header-first-letter"> R</span>ecipe<span id="header-first-letter"> N</span>etwork</h1></a>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div className="navbar-nav">
+              <Link to="/"><div className="nav-item nav-link active">Home <span className="sr-only">(current)</span></div></Link>
+                <Link to="/aboutus"><div className="nav-item nav-link">About GRN</div></Link>
+                <Link to="/browserecipes"><div className="nav-item nav-link">Browse Recipes</div></Link>
+                <Link to="/addarecipe"><div className="nav-item nav-link">Add a Recipe</div></Link>
+                <Link to="/myaccount"><div className="nav-item nav-link" href="#">My Account</div></Link>
               </div>
             </div>
-          </div>
+            <LoginButton />
+            <div className="nav-toggle">
+              <div className="nav-toggle-bar"></div>
+            </div>
+        </nav>
+        <section className="jumbotron">
         </section>
-        </div>
       </div>
     );
   }

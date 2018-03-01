@@ -1,19 +1,60 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import chocolate_bread_img from '../img/chocolate-bread.jpeg';
+import LoginButton from './LoginButton';
+import {Link} from 'react-router-dom';
 
 class HomeContent extends Component {
 
   render() {
     return (
-            <div className="media container">
-                <img className="align-self-start mr-3 media-obj-img" src={chocolate_bread_img} alt="Generic placeholder image" />
-                <div className="media-body">
-                    <h5 className="mt-0 media-obj-header">An Example Recipe</h5>
-                    <p className="media-obj-text">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-                    <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-                </div>
+          <div className="home-content-top-level top-level">
+            <div className="card text-center d-none d-lg-block">
+              <div className="card-body">
+                <h5 className="card-title">Recipes Unbounded</h5>
+                <p className="card-text">Find recipes from around the globe. Share recipes from your travels, heritage, or home region.</p>
+                <a href="#" className="btn btn-primary">Browse Recipes</a>
+              </div>
+          </div>
+          <div className="card text-center d-xs-block d-lg-none">
+              <div className="card-body">
+                <p className="card-text">Find recipes from around the globe. Share recipes from your travels, heritage, or home region.</p>
+                <div className="d-xs-block d-lg-none"><LoginButton /></div>
+              </div>
+          </div>
+          <div className="card sm-card col-lg-3">
+            <img className="card-img-top" src={chocolate_bread_img} alt="chocolate bread" />
+            <div className="card-body">
+              <h5 className="card-title">Go to a sample recipe</h5>
+              <p className="card-text">Super yummy chocolate bread, with a twist.</p>
+              <Link to="/individualrecipe"><a className="btn btn-primary">Click me</a></Link>
             </div>
+          </div>
+          <div className="card sm-card col-lg-3">
+            <img className="card-img-top" src={chocolate_bread_img} alt="chocolate bread" />
+            <div className="card-body">
+              <h5 className="card-title">Featured Recipe</h5>
+              <p className="card-text">Super yummy chocolate bread, with a twist.</p>
+              <a href="#" className="btn btn-primary">View Recipe</a>
+            </div>
+          </div>
+          <div className="card sm-card col-lg-3">
+            <img className="card-img-top" src={chocolate_bread_img} alt="chocolate bread" />
+            <div className="card-body">
+              <h5 className="card-title">Featured Recipe</h5>
+              <p className="card-text">Super yummy chocolate bread, with a twist.</p>
+              <a href="#" className="btn btn-primary">View Recipe</a>
+            </div>
+          </div>
+          <div className="card sm-card col-lg-3">
+            <img className="card-img-top" src={chocolate_bread_img} alt="chocolate bread" />
+            <div className="card-body">
+              <h5 className="card-title">Featured Recipe</h5>
+              <p className="card-text">Super yummy chocolate bread, with a twist.</p>
+              <a href="#" className="btn btn-primary">View Recipe</a>
+            </div>
+          </div>
+        </div>
     );
   }
 }

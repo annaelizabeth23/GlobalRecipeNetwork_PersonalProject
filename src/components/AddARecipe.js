@@ -5,7 +5,7 @@ class AddARecipe extends Component {
 
   render() {
     return (
-          <div className="add-a-recipe-top-level top-level">
+          <div className="add-a-recipe-top-level top-level container">
             <h4>Share a Recipe with the Global Recipe Network</h4>
             <form>
                 <div className="form-group">

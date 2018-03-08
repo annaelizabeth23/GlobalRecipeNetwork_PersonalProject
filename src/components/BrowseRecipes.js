@@ -5,7 +5,7 @@ class BrowseRecipes extends Component {
 
   render() {
     return (
-          <div className="find-recipes-top-level top-level col-lg-8">
+          <div className="find-recipes-top-level top-level container">
             <h4>Browse Recipes</h4>
               <div className="recipe-search">
               <div className="form-group">

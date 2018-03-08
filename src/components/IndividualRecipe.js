@@ -5,7 +5,7 @@ class IndividualRecipe extends Component {
 
   render() {
     return (
-          <div className="individual-recipe-top-level top-level">
+          <div className="individual-recipe-top-level top-level container">
             <h4>Recipe Title</h4>
             <h6>Description</h6>
             <h6>The Story:</h6>

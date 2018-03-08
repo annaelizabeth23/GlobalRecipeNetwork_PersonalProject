@@ -1,27 +1,33 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import sample_user_image from '../img/sample-user-image.jpeg';
+import {connect} from 'react-redux';
+import { fetchUserData } from '../reducer';
 
 class MyAccount extends Component {
-
+    // constructor() {
+    //     super();
+    //     this.state = {
+    //       user: {}
+    //     };
+    //   }
+// componentDidMount() {
+//     //
+//     axios.get('/api/user-data').then(response => {
+//         console.log(response.data);
+//         this.setState({
+//         user: response.data.user
+//         });
+//     });
+//     }
   render() {
+    // const {user} = this.state;
+    const {name, picture, email} = this.props.user;
     return (
-          <div className="my-account-top-level top-level col-lg-4">
-            <h4>My Account</h4>
-            <div className="media">
-            <img className="mr-3 account-img" src={sample_user_image} alt="Generic placeholder image" />
-                <div className="media-body">
-                    <h6 className="mt-0">About Me</h6>
-                    <p>All about this user and what they like to do. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing vitae proin sagittis nisl rhoncus mattis rhoncus urna. Diam quis enim lobortis scelerisque fermentum dui faucibus. Porttitor eget dolor morbi non arcu risus. Vitae proin sagittis nisl rhoncus mattis rhoncus urna. Sed tempus urna et pharetra. Pretium lectus quam id leo. Tempor commodo ullamcorper a lacus vestibulum sed arcu non odio. Eu nisl nunc mi ipsum faucibus vitae aliquet nec. Pulvinar pellentesque habitant morbi tristique senectus et netus et. Quis lectus nulla at volutpat diam ut venenatis. Aliquet enim tortor at auctor urna nunc id cursus. Enim ut sem viverra aliquet eget sit amet tellus cras. Id aliquet lectus proin nibh nisl condimentum id venenatis. Tellus at urna condimentum mattis. Turpis egestas maecenas pharetra convallis posuere morbi leo urna. Leo duis ut diam quam.</p>
-                    <h6>My Current Location</h6>
-                    <p>Hong Kong, China</p>
-                    <h6>Connect With Me</h6>
-                    <p>My blog is www.myawesometravelblog.com</p>
-                </div>
-            </div>
-            <br />
+          <div className="my-account-top-level top-level container">
+            <img className="account-img" src={picture} alt="User's Image" />
             <div className="my-contributions">
-                <h5>My Contributions</h5>
+                <h5>{name}'s Contribution's</h5>
                 <ul className="list-group list-group-flush">
                     <a href="#"><li className="list-group-item contribution-list">Mexican Street Tacos</li></a>
                     <a href="#"><li className="list-group-item contribution-list">Bolivian Pizza</li></a>
@@ -35,4 +41,18 @@ class MyAccount extends Component {
   }
 }
 
-export default MyAccount;
+const mapStateToProps = store => {
+    return {
+        user: store.user
+    };
+};
+
+const mapDispatchToProps = {
+    fetchUserData: fetchUserData
+    //the fetchUserData is the action creator and we are setting it to the key
+    //we are sending this to connect. redux wraps all of our action creators with a dispatch which will run the function on the reducer
+}
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+const connectedMyAccount = connector(MyAccount);
+export default connectedMyAccount;

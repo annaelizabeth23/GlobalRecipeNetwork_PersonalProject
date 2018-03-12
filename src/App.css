@@ -18,9 +18,9 @@ nav {
 }
 
 .jumbotron {
-  background-image: url('./img/panorama-city.jpeg');
+  background-image: url('./img/spice-market.jpeg');
   background-size: cover;
-  height: 350px;
+  height: 450px;
   /* opacity: 0.7; */
 }
 

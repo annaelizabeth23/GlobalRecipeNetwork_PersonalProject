@@ -5,4 +5,4 @@
 SELECT users.name, recipes.name FROM users_auth0_mini
     JOIN recipes 
         ON users_auth0_mini.id = recipes.id
-    WHERE recipes.recipe_name LIKE '%' + $1 + '%';
+    WHERE recipes.recipe_title LIKE '%' + $1 + '%' OR recipes.recipe_origin LIKE $2;

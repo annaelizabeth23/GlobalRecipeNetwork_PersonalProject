@@ -4,6 +4,7 @@ const massive = require('massive');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const controller = require('./controller');
+const checkUserStatus = require('./middleware/checkUserStatus');
 
 require('dotenv').config();
 
@@ -26,6 +27,7 @@ massive(process.env.CONNECTION_STRING).then(db => {
     console.log('massive error', error);
 });
 
+//Auth0 code begins/////////////////////////////////////////////
 app.get('/auth/callback', (req, res) => {
   console.log("get", `https://${process.env.REACT_APP_AUTH0_DOMAIN}/oauth/token`);
   axios.post(`https://${process.env.REACT_APP_AUTH0_DOMAIN}/oauth/token`, {
@@ -74,24 +76,13 @@ app.get('/auth/callback', (req, res) => {
     //now this second axios call is getting the user data back
   })
 });
-  
+//Auth0 code ends////////////////////////////////////////////////////////////
 
-app.post('/api/logout', (req, res) => {
-    req.session.destroy();
-    res.send();
-  })
+app.post('/api/logout', controller.logoutUser);
+//log out the user by destroying the session
   
-  app.get('/api/user-data', (req, res) => {
-    res.json({ user: req.session.user });
-  });
-  
-  function checkLoggedIn(req, res, next) {
-    if (req.session.user) {
-      next();
-    } else {
-      res.status(403).json({ message: 'Unauthorized' });
-    }
-  }
+  app.get('/api/user-data', controller.getUser);
+  //similar to how we did it in the full stack review- using middleware to check that user is logged in, then getting the user data from the session
 
 app.get('/api/getNewRecipes', controller.getNewRecipes);
 

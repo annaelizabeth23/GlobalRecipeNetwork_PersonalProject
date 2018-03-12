@@ -2,8 +2,28 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 class BrowseRecipes extends Component {
+  constructor() {
+    super();
+    this.state = {
+        recipes: []
+      }
+      //bindings
+      
+}
+
+componentDidMount(){
+  axios.get('/api/getNewRecipes').then(response => {
+    this.setState({recipes: response.data});
+  });
+}
 
   render() {
+    let displayRecipes = this.state.recipes.map((item, i) => {
+      return (
+      <div key = {i}><li>{item.title}</li></div>
+  )
+  })
+
     return (
           <div className="find-recipes-top-level top-level container">
             <h4>Browse Recipes</h4>
@@ -220,13 +240,14 @@ class BrowseRecipes extends Component {
                   </form>
               </div>
               <h5>Matching Results:</h5>
-              <ul className="list-group list-group-flush">
+              <div>{displayRecipes}</div>
+              {/* <ul className="list-group list-group-flush">
                     <a href="#"><li className="list-group-item search-results-list">Mexican Street Tacos</li></a>
                     <a href="#"><li className="list-group-item search-results-list">Bolivian Pizza</li></a>
                     <a href="#"><li className="list-group-item search-results-list">Hong Kong Spicy Tofu</li></a>
                     <a href="#"><li className="list-group-item search-results-list">Alaskan Salmon Dip</li></a>
                     <a href="#"><li className="list-group-item search-results-list">Curried Lentils</li></a>
-                </ul>
+                </ul> */}
           </div>
     );
   }

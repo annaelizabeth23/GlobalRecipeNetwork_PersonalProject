@@ -1,0 +1,3 @@
+SELECT * FROM recipes
+ORDER BY recipe_id DESC
+LIMIT 100;

@@ -1,7 +1,7 @@
 import React from 'react';
 import HomeContent from './components/HomeContent';
 import AboutUs from './components/AboutGRN';
-import AddARecipe from './components/AddARecipe';
+import AddARecipeContainer from './components/AddARecipeContainer';
 import BrowseRecipes from './components/BrowseRecipes';
 import IndividualRecipe from './components/IndividualRecipe';
 import AccountContainer from './components/AccountContainer';
@@ -15,7 +15,7 @@ export default (
         <Route component={HomeContent} exact path="/" />
         <Route component={AboutUs} path="/aboutus" />
         <Route component={BrowseRecipes} path="/browserecipes" />
-        <Route component={AddARecipe} path="/addarecipe" />
+        <Route component={AddARecipeContainer} path="/addarecipe" />
         <Route component={AccountContainer} path="/myaccount" />
         <Route component={IndividualRecipe} path="/individualrecipe" />
     </Switch>

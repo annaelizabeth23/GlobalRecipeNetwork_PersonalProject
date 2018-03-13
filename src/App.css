@@ -13,8 +13,7 @@ nav {
 }
 
 #header-login-logout {
-  float: right;
-  display: block;
+  display: inline-flex;
 }
 
 .jumbotron {
@@ -47,12 +46,19 @@ h4, h5, h6 {
 }
 
 .navbar-brand {
-  margin-right: 30%;
+  margin-right: 20%;
 }
 
-.nav-item {
-  margin-right: 15px;
+.responsive-nav-link {
+  list-style: none;
+  display: inline-flex;
+  margin-right: 10px;
+  font-size: 35px;
 }
+
+/* .nav-item {
+  margin-right: 15px;
+} */
 
 form {
   font-family: 'Alegreya Sans', sans-serif;

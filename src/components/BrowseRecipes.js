@@ -9,7 +9,8 @@ class BrowseRecipes extends Component {
         title: '',
         origin: ''
       }
-      this.recipeSearch = this.recipeSearch.bind(this);
+      // this.recipeSearch = this.recipeSearch.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
       
 }
 
@@ -19,8 +20,15 @@ componentDidMount(){
   });
 }
 
-recipeSearch () {
-  axios.get('/api/recipeSearch', {"title": this.state.title, "origin": this.state.origin}).then(response => {
+// recipeSearch () {
+//   axios.get('/api/recipeSearch', {"title": this.state.title, "origin": this.state.origin}).then(response => {
+//     this.setState({recipes: response.data});
+//   });
+// }
+
+handleSubmit(event) {
+  event.preventDefault();
+  axios.post('/api/recipeSearch', {"title": this.state.title.toUpperCase(), "origin": this.state.origin}).then(response => {
     this.setState({recipes: response.data});
   });
 }
@@ -37,7 +45,7 @@ recipeSearch () {
             <h4>Browse Recipes</h4>
               <div className="recipe-search">
               <div className="form-group">
-                    <label for="country-select"><h5>Filter by Recipe Country of Origin:</h5></label>
+                    <label htmlFor="country-select"><h5>Filter by Recipe Country of Origin:</h5></label>
                     <select className="form-control" onChange={(e) => this.setState({origin: e.target.value})}>
                         <option value="">{/*intentionally left blank*/}</option>
                         <option value="Afghanistan">Afghanistan</option>
@@ -238,14 +246,14 @@ recipeSearch () {
                         <option value="Zimbabwe">Zimbabwe</option>
                     </select>
                 </div>
-                <form className="form-group" role="search">
-                  <label for="recipe-search"><h5>Search by Recipe Name:</h5></label>
+                <form className="form-group" role="search" onSubmit={this.handleSubmit}>
+                  <label htmlFor="recipe-search"><h5>Search by Recipe Name:</h5></label>
                     <div className="input-group add-on">
                       <input className="form-control" placeholder="Search" name="srch-term" id="srch-term" type="text" onChange={(e) => this.setState({title: e.target.value})} />
                       {this.state.title}
                       {this.state.origin}
                       <div className="input-group-btn">
-                        <button className="btn btn-default" type="submit">Search</button>
+                        <button className="btn btn-default" type="submit" value="Submit">Search</button>
                       </div>
                     </div>
                   </form>

@@ -3,7 +3,7 @@ const axios = require('axios');
 module.exports = {
     getNewRecipes: (req, res) => {
         req.app.get('db').get_newest_recipes().then(recipes => {
-        console.log('recipes', recipes)
+        // console.log('recipes', recipes)
         res.status(200).json(recipes);
     }).catch(error => {
         console.log('Oh no! An error has happened!', error);
@@ -11,7 +11,9 @@ module.exports = {
     })},
     
     recipeSearch: (req, res) => {
-        req.app.get('db').recipe_search([req.query.title, req.query.recipe_origin]).then(recipes => {
+        let title = req.body.title;
+        console.log('this is the req.body', req.body);
+        req.app.get('db').recipe_search([title, req.body.recipe_origin]).then(recipes => {
             res.status(200).json(recipes);
         }).catch(error => {
             console.log('Oh no! An error has happened!', error);
@@ -23,7 +25,8 @@ module.exports = {
     res.json({ user: req.session.user });
   },
 
-    logoutUser: (req, res) => (req, res) => {
+    logoutUser: (req, res) => {
+        console.log("server log out");
         req.session.destroy();
         res.status(200).send();
     }

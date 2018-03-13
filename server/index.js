@@ -86,7 +86,7 @@ app.post('/api/logout', controller.logoutUser);
 
 app.get('/api/getNewRecipes', controller.getNewRecipes);
 
-app.get('/api/recipeSearch', controller.recipeSearch);
+app.post('/api/recipeSearch', controller.recipeSearch);
 
 const port = 4000;
 app.listen(port, () => console.log(`Anna's server listening on ${port}!`))

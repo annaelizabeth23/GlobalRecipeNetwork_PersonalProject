@@ -1,19 +1,58 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {connect} from 'react-redux';
+import { fetchUserData } from '../reducer';
+import store from '../store';
 
 class IndividualRecipe extends Component {
   constructor() {
     super();
     this.state= {
-        thisRecipe: {}
+        thisRecipe: {},
     }
-}
+    this.checkIfUserCanEdit = this.checkIfUserCanEdit.bind(this);
+  }
 
-  componentDidMount(){
+
+  componentDidMount () {
+    axios.get('/api/user-data').then(response => {
+        this.props.fetchUserData(response.data.user);
+        this.getRecipeInfo();
+    }).catch(error => {
+        console.log('error with redux user at app.js')
+    })
+}
+  
+  getRecipeInfo(){
+    console.log('get recipe info');
     axios.post('/api/individualRecipe', {recipe_id: this.props.match.params.recipe_id}).then(response => {
-      this.setState({thisRecipe: response.data[0]});
+      this.setState({thisRecipe: response.data[0]},()=> this.checkIfUserCanEdit());
       //response.data comes back as an array but you can put it in an object and access as above
     });
+    console.log('user', this.props);
+  }
+
+  checkIfUserCanEdit(){
+    const x = this.props.user;
+    if (x) {
+      console.log('redux user info', this.props.user.id)
+    }else {
+      alert('no one is logged in')
+    }
+  }
+
+  handleEdit(){
+    if(this.state.title !== this.state.thisRecipe.title && this.state.title !== "") {
+      axios.post('/api/editRecipeTitle', {title: this.state.title}).then(response => {
+        console.log('title saved successfully');
+      })
+    }
+
+    if(this.state.recipeDesc !== this.state.thisRecipe.recipeDesc && this.state.recipeDesc !== "") {
+      axios.post('/api/editRecipeDescription', {recipeDesc: this.state.recipeDesc}).then(response => {
+        console.log('recipe description saved successfully');
+      })
+    }
   }
 
   render() {
@@ -36,4 +75,17 @@ class IndividualRecipe extends Component {
   }
 }
 
-export default IndividualRecipe;
+const mapStateToProps = store => {
+  return {
+      user: store.user
+  };
+};
+
+const mapDispatchToProps = {
+  fetchUserData: fetchUserData
+  }
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+const connectedIndividualRecipe = connector(IndividualRecipe);
+
+export default connectedIndividualRecipe;

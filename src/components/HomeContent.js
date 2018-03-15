@@ -26,9 +26,9 @@ class HomeContent extends Component {
           <div className="card sm-card col-lg-2">
             <img className="card-img-top" src={chocolate_bread_img} alt="chocolate bread" />
             <div className="card-body">
-              <h5 className="card-title">Go to a sample recipe</h5>
-              <p className="card-text">Super yummy chocolate bread, with a twist.</p>
-              <Link to="/individualrecipe/123"><div className="btn btn-primary">Click me</div></Link>
+              <h5 className="card-title">PRAWN MALAI CURRY</h5>
+              <p className="card-text">This delicious, mild curry is so easy to make. The word 'malai' means cream, but this curry gets its creaminess from coconut milk.</p>
+              <Link to="/individualrecipe/1"><div className="btn btn-primary">Discover</div></Link>
             </div>
           </div>
           <div className="card sm-card col-lg-2">

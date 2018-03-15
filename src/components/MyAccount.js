@@ -20,6 +20,7 @@ componentDidMount(){
         console.log('triggered', response.data);
         this.setState({myRecipes: response.data});
     });
+    console.log(this.props);
     }
 
   render() {

@@ -48,6 +48,7 @@ app.get('/auth/callback', (req, res) => {
           //truthy to see if user found
             const user ={
               name: userData.name,
+              id: userData.sub,
               picture: userData.picture
               //we are grabbing the info we want from the user data
             };
@@ -60,6 +61,7 @@ app.get('/auth/callback', (req, res) => {
               console.log("db hit");
               const user = {
                 name: userData.name,
+                id: userData.sub,
                 picture: userData.picture
               }
               req.session.user = user;
@@ -87,6 +89,12 @@ app.post('/api/logout', controller.logoutUser);
 app.get('/api/getNewRecipes', controller.getNewRecipes);
 
 app.post('/api/recipeSearch', controller.recipeSearch);
+
+app.post('/api/addRecipe', controller.addRecipe);
+
+app.post('/api/myAccountRecipes', controller.myAccountRecipes);
+
+app.post('/api/individualRecipe', controller.individualRecipe);
 
 const port = 4000;
 app.listen(port, () => console.log(`Anna's server listening on ${port}!`))

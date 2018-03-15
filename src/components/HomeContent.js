@@ -28,7 +28,7 @@ class HomeContent extends Component {
             <div className="card-body">
               <h5 className="card-title">Go to a sample recipe</h5>
               <p className="card-text">Super yummy chocolate bread, with a twist.</p>
-              <Link to="/individualrecipe"><div className="btn btn-primary">Click me</div></Link>
+              <Link to="/individualrecipe/123"><div className="btn btn-primary">Click me</div></Link>
             </div>
           </div>
           <div className="card sm-card col-lg-2">

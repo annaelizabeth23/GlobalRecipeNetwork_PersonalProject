@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 class BrowseRecipes extends Component {
   constructor() {
@@ -17,6 +18,7 @@ class BrowseRecipes extends Component {
 componentDidMount(){
   axios.get('/api/getNewRecipes').then(response => {
     this.setState({recipes: response.data});
+    console.log("recipes", this.state.recipes);
   });
 }
 
@@ -36,7 +38,7 @@ handleSubmit(event) {
   render() {
     let displayRecipes = this.state.recipes.map((item, i) => {
       return (
-      <div key = {i}><li>{item.title}</li></div>
+      <Link to={`/individualrecipe/${item.recipe_id}`} key = {i}><li>{item.title}</li></Link>
   )
   })
 

@@ -2,90 +2,110 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import { fetchUserData } from '../reducer';
+import {Route, Redirect} from 'react-router';
 
 class AddARecipe extends Component {
     constructor() {
         super();
         this.state= {
-            Title: '',
-            RecipeDesc: '',
-            RecipeStory: '',
-            RecipeOrigin: '',
-            CookTime: '',
-            PrepTime: '',
-            Servings: '',
-            Ingredients: '',
-            Directions: ''
+            title: '',
+            recipeDesc: '',
+            recipeStory: '',
+            recipeOrigin: '',
+            cookTime: '',
+            prepTime: '',
+            servings: '',
+            ingredients: '',
+            directions: ''
         }
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.recipeInfo = this.recipeInfo.bind(this);
     }
 
-    handleChangeTitle(event) {
-        this.setState({Title: event.target.value.toUpperCase()});
+    recipeInfo(input, name) {
+        switch(name) {
+            case 'title':
+                this.setState({title: input.toUpperCase()})
+                break;
+            
+            case 'recipeDesc':
+                this.setState({recipeDesc: input})
+                break;
+
+            case 'recipeStory':
+                this.setState({recipeStory: input})
+                break;
+
+            case 'recipeOrigin':
+                this.setState({recipeOrigin: input})
+                break;
+
+            case 'cookTime':
+                this.setState({cookTime: input})
+                break;
+
+            case 'prepTime':
+                this.setState({prepTime: input})
+                break;
+
+            case 'servings':
+                this.setState({servings: input})
+                break;
+
+            case 'ingredients':
+                this.setState({ingredients: input})
+                break;
+
+            case 'directions':
+                this.setState({directions: input})
+                break;
+
+            default:
+                alert("Please enter valid information into each area of the form");
+        }
+        
     }
 
-    handleChangeRecipeDesc(event) {
-        this.setState({RecipeDesc: event.target.value});
+    componentDidMount(){
+        console.log('user', this.props.user);
     }
 
-    handleChangeRecipeStory(event) {
-        this.setState({RecipeStory: event.target.value});
-    }
-
-    handleChangeRecipeOrigin(event) {
-        this.setState({RecipeOrigin: event.target.value});
-    }
-
-    handleChangeCookTime(event) {
-        this.setState({CookTime: event.target.value});
-    }
-
-    handleChangePrepTime(event) {
-        this.setState({PrepTime: event.target.value});
-    }
-
-    handleChangeServings(event) {
-        this.setState({Servings: event.target.value});
-    }
-
-    handleChangeIngredients(event) {
-        this.setState({Ingredients: event.target.value});
-    }
-
-    handleChangeDirections(event) {
-        this.setState({Directions: event.target.value});
-    }
-
-    handleSubmit(event) {
-        alert('Thank you for submitting your recipe!')
+    handleSubmit(event){
         event.preventDefault();
+        const body = {...this.state};
+        body.id = this.props.user.id;
+        console.log(body);
+        axios.post('/api/addRecipe', body).then(res => {
+            alert('Thank you for submitting your recipe to the Global Recipe Network!');
+            // <Redirect to='/' />
+        })
     }
-    componentDidMount(){console.log("redux data", this.props.user)}
 
   render() {
       
     return (
           <div className="add-a-recipe-top-level top-level container">
             <h4>Share a Recipe with the Global Recipe Network</h4>
+            <p><b>User Submitting Recipe:</b> {this.props.user.name}</p>
             <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="formGroupExampleInput">Recipe Title</label>
-                    <input type="text" className="form-control" id="recipe-title-input" placeholder="Recipe title" />
+                    <input type="text" className="form-control" name="title" id="recipe-title-input" placeholder="Recipe title" onChange={(e) => {this.recipeInfo(e.target.value, 'title')}} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="formGroupExampleInput2">Recipe Description</label>
-                    <input type="text" className="form-control" id="recipe-description-input" placeholder="Recipe Description" />
+                    <input type="text" className="form-control" name="recipeDesc" id="recipe-description-input" placeholder="Recipe Description" onChange={(e) => {this.recipeInfo(e.target.value, 'recipeDesc')}} />
                 </div>
                 <div className="input-group form-group">
                     <div className="input-group-prepend">
                         <span className="input-group-text">Does your recipe have a story?</span>
                     </div>
-                    <textarea className="form-control" aria-label="With textarea"></textarea>
+                    <textarea className="form-control" name="recipeStory" aria-label="With textarea" onChange={(e) => {this.recipeInfo(e.target.value, 'recipeStory')}}></textarea>
                 </div>
                 <div className="form-group">
                     <label htmlFor="country-select">Country of Origin:</label>
-                    <select className="form-control">
-                        <option value="">{/*intentionally left blank*/}</option>
+                    <select className="form-control" name="recipeOrigin" onChange={(e) => {this.recipeInfo(e.target.value, 'recipeOrigin')}}>
+                        <option value="null">{/*intentionally left blank*/}</option>
                         <option value="Afghanistan">Afghanistan</option>
                         <option value="Albania">Albania</option>
                         <option value="Algeria">Algeria</option>
@@ -287,28 +307,28 @@ class AddARecipe extends Component {
                 <div className="add-recipe-sm-input col-lg-6 col-sm-12">
                 <div className="form-group">
                     <label htmlFor="cook-time">Cook Time (Minutes):</label>
-                    <input className="form-control input-sm" id="inputsm" type="text" />
+                    <input className="form-control input-sm" name="cookTime" id="inputsm" type="text" onChange={(e) => {this.recipeInfo(e.target.value, 'cookTime')}}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="prep-time">Prep Time (Minutes):</label>
-                    <input className="form-control input-sm" id="inputsm" type="text" />
+                    <input className="form-control input-sm" name="prepTime" id="inputsm" type="text" onChange={(e) => {this.recipeInfo(e.target.value, 'prepTime')}}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="servings">Number of Servings:</label>
-                    <input className="form-control input-sm" id="inputsm" type="text" />
+                    <input className="form-control input-sm" name="servings" id="inputsm" type="text" onChange={(e) => {this.recipeInfo(e.target.value, 'servings')}}/>
                 </div>
                 </div>
                 <div className="input-group form-group">
                     <div className="input-group-prepend">
                         <span className="input-group-text">Ingredients (Seperated by Commas):</span>
                     </div>
-                    <textarea className="form-control" aria-label="With textarea"></textarea>
+                    <textarea className="form-control" name="ingredients" aria-label="With textarea"onChange={(e) => {this.recipeInfo(e.target.value, 'ingredients')}}></textarea>
                 </div>
                 <div className="input-group form-group">
                     <div className="input-group-prepend">
                         <span className="input-group-text">Directions:</span>
                     </div>
-                    <textarea className="form-control" aria-label="With textarea"></textarea>
+                    <textarea className="form-control" name="directions" aria-label="With textarea" onChange={(e) => {this.recipeInfo(e.target.value, 'directions')}}></textarea>
                 </div>
                 <button type="submit" className="btn btn-primary">Submit Recipe</button>
             </form>

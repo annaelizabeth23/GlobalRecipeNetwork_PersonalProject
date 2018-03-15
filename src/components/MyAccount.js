@@ -5,35 +5,40 @@ import {connect} from 'react-redux';
 import { fetchUserData } from '../reducer';
 
 class MyAccount extends Component {
-    // constructor() {
-    //     super();
-    //     this.state = {
-    //       user: {}
-    //     };
-    //   }
-// componentDidMount() {
-//     //
-//     axios.get('/api/user-data').then(response => {
-//         console.log(response.data);
-//         this.setState({
-//         user: response.data.user
-//         });
-//     });
-//     }
+    constructor() {
+        super();
+        this.state = {
+            myRecipes: []
+          }
+          //bind here
+    }
+
+componentDidMount(){
+    let idObj = {auth0_sub: this.props.user.id};
+    console.log('testing user id', this.props.user.id);
+    axios.post('/api/myAccountRecipes', idObj).then(response => {
+        console.log('triggered', response.data);
+        this.setState({myRecipes: response.data});
+    });
+    }
+
   render() {
+
+    let displayRecipes = this.state.myRecipes.map((item, i) => {
+        return (
+        <div key = {i}><li>{item.title}</li></div>
+    )
+    })
+
     // const {user} = this.state;
-    const {name, picture, email} = this.props.user;
+    const {name, picture} = this.props.user;
     return (
           <div className="my-account-top-level top-level container">
             <img className="account-img" src={picture} alt="User's Image" />
             <div className="my-contributions">
                 <h5>{name}'s Contribution's</h5>
                 <ul className="list-group list-group-flush">
-                    <a href="#"><li className="list-group-item contribution-list">Mexican Street Tacos</li></a>
-                    <a href="#"><li className="list-group-item contribution-list">Bolivian Pizza</li></a>
-                    <a href="#"><li className="list-group-item contribution-list">Hong Kong Spicy Tofu</li></a>
-                    <a href="#"><li className="list-group-item contribution-list">Alaskan Salmon Dip</li></a>
-                    <a href="#"><li className="list-group-item contribution-list">Curried Lentils</li></a>
+                    {displayRecipes}
                 </ul>
             </div>
           </div>

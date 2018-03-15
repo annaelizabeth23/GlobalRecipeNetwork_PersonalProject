@@ -8,8 +8,7 @@ class AddARecipeContainer extends Component {
     constructor() {
         super();
         this.state = {
-            notLoggedIn: true,
-            message: null
+            notLoggedIn: true
         }
     }
 
@@ -23,7 +22,6 @@ class AddARecipeContainer extends Component {
             this.props.fetchUserData(response.data.user);
         }).catch(error => {
             this.setState({
-                message: 'Log in to add a recipe.',
                 notLoggedIn: true
             });
         })
@@ -31,14 +29,13 @@ class AddARecipeContainer extends Component {
 
     
     render(){
-        const {notLoggedIn, message} = this.state;
+        const {notLoggedIn} = this.state;
 
         return (
             <div>
             {notLoggedIn && <div>Log in to add a recipe.</div>}
             {/* //above is short circuiting in jsx because no ifs allowed in jsx */}
             {this.props.user && <AddARecipe/>}
-            {message && <div>{this.state.message}</div>}
             </div>
         )
     }

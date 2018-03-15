@@ -17,6 +17,6 @@ export default (
         <Route component={BrowseRecipes} path="/browserecipes" />
         <Route component={AddARecipeContainer} path="/addarecipe" />
         <Route component={AccountContainer} path="/myaccount" />
-        <Route component={IndividualRecipe} path="/individualrecipe" />
+        <Route component={IndividualRecipe} path="/individualrecipe/:recipe_id" />
     </Switch>
 )

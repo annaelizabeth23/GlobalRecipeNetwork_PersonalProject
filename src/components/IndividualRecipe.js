@@ -9,17 +9,17 @@ class IndividualRecipe extends Component {
     super();
     this.state= {
         thisRecipe: {},
+        showEditAndDelete: false
     }
     this.checkIfUserCanEdit = this.checkIfUserCanEdit.bind(this);
   }
-
 
   componentDidMount () {
     axios.get('/api/user-data').then(response => {
         this.props.fetchUserData(response.data.user);
         this.getRecipeInfo();
     }).catch(error => {
-        console.log('error with redux user at app.js')
+        console.log('error with redux user at individual recipe comp')
     })
 }
   
@@ -33,29 +33,19 @@ class IndividualRecipe extends Component {
   }
 
   checkIfUserCanEdit(){
-    const x = this.props.user;
-    if (x) {
-      console.log('redux user info', this.props.user.id)
-    }else {
-      alert('no one is logged in')
-    }
-  }
-
-  handleEdit(){
-    if(this.state.title !== this.state.thisRecipe.title && this.state.title !== "") {
-      axios.post('/api/editRecipeTitle', {title: this.state.title}).then(response => {
-        console.log('title saved successfully');
-      })
-    }
-
-    if(this.state.recipeDesc !== this.state.thisRecipe.recipeDesc && this.state.recipeDesc !== "") {
-      axios.post('/api/editRecipeDescription', {recipeDesc: this.state.recipeDesc}).then(response => {
-        console.log('recipe description saved successfully');
-      })
+    if (this.props.user && this.props.user.id === this.state.thisRecipe.auth0_id){
+      console.log('check if user can edit')
+      console.log(this.props.user.id);
+      this.setState({
+        showEditAndDelete: true
+      });
+    }else{
+      console.log('show edit and delete is false right now')
     }
   }
 
   render() {
+    console.log(this.state.showEditAndDelete);
     return (
           <div className="individual-recipe-top-level top-level container">
             <h4><b>{this.state.thisRecipe.title}</b></h4>
@@ -68,8 +58,10 @@ class IndividualRecipe extends Component {
             <h6>Ingredients:</h6><p>{this.state.thisRecipe.ingredients}</p>
             <h6>Directions:</h6><p>{this.state.thisRecipe.directions}</p>
             <br />
-            <button type="button" className="btn btn-secondary">Edit Your Recipe</button>
-            <button type="button" className="btn btn-secondary">Delete Your Recipe</button>
+            {this.state.showEditAndDelete &&
+            <button type="button" className="btn btn-secondary">Edit Your Recipe</button>}
+            {this.state.showEditAndDelete &&
+            <button type="button" className="btn btn-secondary">Delete Your Recipe</button>}
           </div>
     );
   }

@@ -5,7 +5,7 @@ import { fetchUserData } from '../reducer';
 import {Route, Redirect} from 'react-router';
 import {Link} from 'react-router-dom';
 
-class AddARecipe extends Component {
+class EditRecipe extends Component {
     constructor() {
         super();
         this.state= {
@@ -19,8 +19,16 @@ class AddARecipe extends Component {
             ingredients: '',
             directions: ''
         }
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleEdit = this.handleEdit.bind(this);
         this.recipeInfo = this.recipeInfo.bind(this);
+    }
+
+    componentDidMount () {
+        axios.get('/api/user-data').then(response => {
+            this.props.fetchUserData(response.data.user);
+        }).catch(error => {
+            console.log('error with redux user at edit recipe')
+        })
     }
 
     recipeInfo(input, name) {
@@ -67,18 +75,13 @@ class AddARecipe extends Component {
         
     }
 
-    componentDidMount(){
-        console.log('user', this.props.user);
-    }
-
-    handleSubmit(event){
+    handleEdit(event){
         event.preventDefault();
         const body = {...this.state};
         body.id = this.props.user.id;
         console.log(body);
         axios.post('/api/addRecipe', body).then(res => {
-            alert('Thank you for submitting your recipe to the Global Recipe Network!');
-            // <Redirect to='/' />
+            alert('Your recipe was edited');
         })
     }
 

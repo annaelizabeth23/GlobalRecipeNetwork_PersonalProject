@@ -3,6 +3,7 @@ import axios from 'axios';
 import {connect} from 'react-redux';
 import { fetchUserData } from '../reducer';
 import store from '../store';
+import {Link} from 'react-router-dom';
 
 class IndividualRecipe extends Component {
   constructor() {
@@ -12,6 +13,7 @@ class IndividualRecipe extends Component {
         showEditAndDelete: false
     }
     this.checkIfUserCanEdit = this.checkIfUserCanEdit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount () {
@@ -33,6 +35,7 @@ class IndividualRecipe extends Component {
   }
 
   checkIfUserCanEdit(){
+    console.log(this.props.user.id, " _ ", this.state);
     if (this.props.user && this.props.user.id === this.state.thisRecipe.auth0_id){
       console.log('check if user can edit')
       console.log(this.props.user.id);
@@ -43,6 +46,16 @@ class IndividualRecipe extends Component {
       console.log('show edit and delete is false right now')
     }
   }
+
+  handleDelete(event){
+    console.log("delete recipe triggered")
+    const recipe_id = this.state.thisRecipe.recipe_id;
+    console.log(recipe_id);
+    axios.delete(`/api/deleteRecipe/${recipe_id}`).then(res => {
+        console.log('recipe deleted!')
+    }).catch(error => console.log("ERROR deleting recipe", error));
+    this.props.history.push("/myaccount");
+}
 
   render() {
     console.log(this.state.showEditAndDelete);
@@ -59,9 +72,9 @@ class IndividualRecipe extends Component {
             <h6>Directions:</h6><p>{this.state.thisRecipe.directions}</p>
             <br />
             {this.state.showEditAndDelete &&
-            <button type="button" className="btn btn-secondary">Edit Your Recipe</button>}
+            <Link to={`/editrecipe/${this.state.thisRecipe.recipe_id}`}><button type="button" className="btn btn-secondary">Edit Your Recipe</button></Link>}
             {this.state.showEditAndDelete &&
-            <button type="button" className="btn btn-secondary">Delete Your Recipe</button>}
+            <button type="button" className="btn btn-secondary" onClick={this.handleDelete}>Delete Your Recipe</button>}
           </div>
     );
   }

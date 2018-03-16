@@ -96,5 +96,9 @@ app.post('/api/myAccountRecipes', controller.myAccountRecipes);
 
 app.post('/api/individualRecipe', controller.individualRecipe);
 
+app.post('/api/editRecipe', controller.editRecipe);
+
+app.delete('/api/deleteRecipe/:recipe_id', controller.deleteRecipe);
+
 const port = 4000;
 app.listen(port, () => console.log(`Anna's server listening on ${port}!`))

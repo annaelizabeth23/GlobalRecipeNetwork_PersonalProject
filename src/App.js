@@ -9,6 +9,10 @@ import Footer from './components/Footer';
 
 class App extends Component {
 
+  componentDidMount(){
+    alert('Thank you for visiting Anna Lewandowski\'s project site. It is still under construction but you are welcome to use it in the meantime!');
+  }
+
   render() {
     return (
       <div className="App">

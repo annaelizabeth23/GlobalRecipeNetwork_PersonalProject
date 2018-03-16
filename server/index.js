@@ -100,5 +100,10 @@ app.post('/api/editRecipe', controller.editRecipe);
 
 app.delete('/api/deleteRecipe/:recipe_id', controller.deleteRecipe);
 
+const path = require('path')
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+})
+
 const port = 4000;
 app.listen(port, () => console.log(`Anna's server listening on ${port}!`))

@@ -104,21 +104,21 @@ class AddARecipe extends Component {
             <h4>Share a Recipe with the Global Recipe Network</h4>
             <p><b>User Submitting Recipe:</b> {this.props.user.name}</p>
             <form onSubmit={this.handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="formGroupExampleInput">Recipe Title</label>
-                    <input type="text" className="form-control" name="title" id="recipe-title-input" placeholder="Recipe title" value={this.state.title}  onChange={(e) => {this.recipeInfo(e.target.value, 'title')}} />
+                <div className="recipe-form">
+                    <label htmlFor="">Recipe Title:</label>
+                    <input type="text" className="form-control" name="title" id="recipe-title-input" value={this.state.title}  onChange={(e) => {this.recipeInfo(e.target.value, 'title')}} />
                 </div>
-                <div className="form-group">
-                    <label htmlFor="formGroupExampleInput2">Recipe Description</label>
-                    <input type="text" className="form-control" name="recipeDesc" id="recipe-description-input" placeholder="Recipe Description" value={this.state.recipeDesc}  onChange={(e) => {this.recipeInfo(e.target.value, 'recipeDesc')}} />
+                <div className="recipe-form">
+                    <label htmlFor="">Recipe Description:</label>
+                    <input type="text" className="form-control" name="recipeDesc" id="recipe-description-input" value={this.state.recipeDesc}  onChange={(e) => {this.recipeInfo(e.target.value, 'recipeDesc')}} />
                 </div>
-                <div className="input-group form-group">
-                    <div className="input-group-prepend">
-                        <span className="input-group-text">Does your recipe have a story?</span>
+                <div className="recipe-form">
+                    <div className="">
+                        <span className="">Does your recipe have a story?:</span>
                     </div>
                     <textarea className="form-control" name="recipeStory" aria-label="With textarea" value={this.state.recipeStory}  onChange={(e) => {this.recipeInfo(e.target.value, 'recipeStory')}}></textarea>
                 </div>
-                <div className="form-group">
+                <div className="recipe-form">
                     <label htmlFor="country-select">Country of Origin:</label>
                     <select className="form-control" name="recipeOrigin" value={this.state.recipeOrigin}  onChange={(e) => {this.recipeInfo(e.target.value, 'recipeOrigin')}}>
                         <option value="null">{/*intentionally left blank*/}</option>
@@ -321,28 +321,28 @@ class AddARecipe extends Component {
                     </select>
                 </div>
                 <div className="add-recipe-sm-input col-lg-6 col-sm-12">
-                <div className="form-group">
+                <div className="recipe-form">
                     <label htmlFor="cook-time">Cook Time (Minutes):</label>
                     <input className="form-control input-sm" name="cookTime" id="inputsm" type="text" value={this.state.cookTime}  onChange={(e) => {this.recipeInfo(e.target.value, 'cookTime')}}/>
                 </div>
-                <div className="form-group">
+                <div className="recipe-form">
                     <label htmlFor="prep-time">Prep Time (Minutes):</label>
                     <input className="form-control input-sm" name="prepTime" id="inputsm" type="text" value={this.state.prepTime}  onChange={(e) => {this.recipeInfo(e.target.value, 'prepTime')}}/>
                 </div>
-                <div className="form-group">
+                <div className="recipe-form">
                     <label htmlFor="servings">Number of Servings:</label>
                     <input className="form-control input-sm" name="servings" id="inputsm" type="text" value={this.state.servings}  onChange={(e) => {this.recipeInfo(e.target.value, 'servings')}}/>
                 </div>
                 </div>
-                <div className="input-group form-group">
-                    <div className="input-group-prepend">
-                        <span className="input-group-text">Ingredients (Seperated by Commas):</span>
+                <div className="recipe-form">
+                    <div className="">
+                        <span className="">Ingredients (Seperated by Commas):</span>
                     </div>
                     <textarea className="form-control" name="ingredients" aria-label="With textarea" value={this.state.ingredients} onChange={(e) => {this.recipeInfo(e.target.value, 'ingredients')}}></textarea>
                 </div>
-                <div className="input-group form-group">
-                    <div className="input-group-prepend">
-                        <span className="input-group-text">Directions:</span>
+                <div className="recipe-form">
+                    <div className="">
+                        <span className="">Directions:</span>
                     </div>
                     <textarea className="form-control" name="directions" aria-label="With textarea" value={this.state.directions}  onChange={(e) => {this.recipeInfo(e.target.value, 'directions')}}></textarea>
                 </div>

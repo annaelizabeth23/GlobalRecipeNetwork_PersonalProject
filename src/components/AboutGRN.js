@@ -7,7 +7,7 @@ class AboutGRN extends Component {
     return (
           <div className="about-grn-top-level top-level container">
             <div className="row">
-            <h4 className="col-lg-12">All About Us</h4>
+            <h4 className="col-lg-12">How to Get the Most Out of the Global Recipe Network</h4>
             </div>
             <div className="row">
             <p className="col-lg-12">

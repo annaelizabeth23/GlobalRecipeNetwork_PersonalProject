@@ -22,9 +22,9 @@ logout() {
   render() {
     
     return (
-      <div className="btn-group" id={this.props.id} role="group" aria-label="login and logout buttons">
-      <button type="button" className="btn btn-secondary" onClick={this.login}>Login/Register</button>
-      <button type="button" className="btn btn-secondary" onClick={this.logout.bind(this)}>Logout</button>
+      <div className="btn-group flex-column" id={this.props.id} role="group" aria-label="login and logout buttons">
+      <button type="button" className="btn btn-secondary btn-sm" onClick={this.login}>Login/Register</button>
+      <button type="button" className="btn btn-secondary btn-sm" onClick={this.logout.bind(this)}>Logout</button>
       
     </div>
     );

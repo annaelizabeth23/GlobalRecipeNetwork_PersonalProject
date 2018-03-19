@@ -3,8 +3,15 @@ h1 {
   color: #000411;
 }
 
+.header-text-responsive {
+  font-family: 'Alegreya SC', serif;
+  color: #000411;
+  font-size: 23px;
+  
+}
+
 nav {
-  background: #B5BDB9;
+  background: #033d4938;
 }
 
 #header-first-letter {
@@ -12,8 +19,13 @@ nav {
   -webkit-text-stroke: 1px #E3F0E8;
 }
 
+#header-first-letter-responsive {
+  font-size: 200%;
+  -webkit-text-stroke: 1px #E3F0E8;
+}
+
 #header-login-logout {
-  display: inline-flex;
+  /* display: inline-flex; */
 }
 
 .jumbotron {
@@ -42,18 +54,22 @@ h4, h5, h6 {
 }
 
 .one-media-obj, .media-container {
-  display: block;
+  /* display: block; */
 }
 
 .navbar-brand {
-  margin-right: 20%;
+  /* margin-right: 20%; */
+}
+
+.responsive-nav {
+  margin: 0;
+  padding: 0;
 }
 
 .responsive-nav-link {
   list-style: none;
-  display: inline-flex;
-  margin-right: 10px;
-  font-size: 35px;
+  /* margin-right: 5px; */
+  font-size: 30px;
 }
 
 /* .nav-item {
@@ -65,8 +81,8 @@ form {
 }
 
 .add-recipe-sm-input {
-  display: flex;
-  flex-direction: row;
+  /* display: flex;
+  flex-direction: row; */
 }
 
 .footer-top-level {
@@ -75,8 +91,8 @@ form {
 
 .sm-card {
   /* width: 18rem; */
-  display: inline-block;
-  margin: 5%;
+  /* display: inline-block;
+  margin: 5%; */
 }
 
 .top-level {
@@ -108,4 +124,25 @@ form {
 .add-on .input-group-btn > .btn {
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.footer-text {
+  margin: 0 auto;
+  text-align: center;
+}
+
+@media (min-width: 800px) {
+  .img-thumbnail {
+    height: 350px;
+  }
+}
+
+.recipe-links {
+  text-decoration: none;
+  color: black;
+  list-style: none;
+}
+
+.recipe-form {
+  padding: 10px;
 }

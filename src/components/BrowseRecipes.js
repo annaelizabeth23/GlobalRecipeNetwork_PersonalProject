@@ -17,6 +17,7 @@ class BrowseRecipes extends Component {
 
 componentDidMount(){
   axios.get('/api/getNewRecipes').then(response => {
+    console.log("response data", response.data);
     this.setState({recipes: response.data});
   });
 }
@@ -35,9 +36,10 @@ handleSubmit(event) {
 }
 
   render() {
+    console.log("recipe info consoled",this.state.recipes.recipe_id);
     let displayRecipes = this.state.recipes.map((item, i) => {
       return (
-      <Link to={`/individualrecipe/${item.recipe_id}`} key = {i}><li>{item.title} by {item.name}</li></Link>
+      <Link to={`/individualrecipe/${item.recipe_id}`} key = {i}><li className="recipe-links"><b>{item.title}</b> by {item.name}</li></Link>
   )
   })
 

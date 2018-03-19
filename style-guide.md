@@ -3,7 +3,7 @@
 * Colors:
     * Body Background- #160C28
     * Inner Body Background- #E9F3EC
-    * Header and Footer Background- #B5BDB9
+    * Header and Footer Background- #033d4938
     * Logo Text Color, Main- #000411
     * Logo Text Color, Outline- #E3F0E8
     * Buttons, Main- #EFCB68

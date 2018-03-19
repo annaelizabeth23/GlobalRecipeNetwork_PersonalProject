@@ -3,6 +3,7 @@ import axios from 'axios';
 import sample_user_image from '../img/sample-user-image.jpeg';
 import {connect} from 'react-redux';
 import { fetchUserData } from '../reducer';
+import {Link} from 'react-router-dom';
 
 class MyAccount extends Component {
     constructor() {
@@ -27,7 +28,7 @@ componentDidMount(){
 
     let displayRecipes = this.state.myRecipes.map((item, i) => {
         return (
-        <div key = {i}><li>{item.title}</li></div>
+            <Link to={`/individualrecipe/${item.recipe_id}`} key = {i}><li className="recipe-links">{item.title}</li></Link>
     )
     })
 

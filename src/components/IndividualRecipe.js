@@ -35,7 +35,7 @@ class IndividualRecipe extends Component {
   }
 
   checkIfUserCanEdit(){
-    console.log(this.props.user.id, " _ ", this.state);
+    // console.log(this.props.user.id, " _ ", this.state);
     if (this.props.user && this.props.user.id === this.state.thisRecipe.auth0_id){
       console.log('check if user can edit')
       console.log(this.props.user.id);

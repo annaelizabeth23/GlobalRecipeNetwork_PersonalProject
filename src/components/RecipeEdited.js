@@ -6,7 +6,7 @@ class RecipeEdited extends Component {
 
   render() {
     return (
-          <div>
+          <div className="container">
            <h4>Your Recipe Has Been Edited</h4>
            <p>Thank you for contributing to the Global Recipe Network!</p>
            <Link to="/"><div className="btn btn-primary">Back to Home Page</div></Link>

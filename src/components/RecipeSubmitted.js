@@ -6,7 +6,7 @@ class RecipeSubmitted extends Component {
 
   render() {
     return (
-          <div>
+          <div className="container">
            <h4>Your recipe has been submitted to the Global Recipe Network!</h4>
            <p>Thank you for sharing your recipe with our online community.</p>
            <Link to="/"><div className="btn btn-primary">Back to Home Page</div></Link>

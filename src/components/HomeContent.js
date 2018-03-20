@@ -16,7 +16,7 @@ class HomeContent extends Component {
                 <div className="card-body">
                   <h4 className="card-title">Recipes Unbounded</h4>
                   <p className="card-text">Find recipes from around the globe. Share recipes from your travels, heritage, or home region.</p>
-                  <a href="#" className="btn btn-secondary btn-sm">Browse Recipes</a>
+                  <Link to="/browserecipes"><div className="btn btn-secondary btn-sm">Browse Recipes</div></Link>
                 </div>
               </div>
               <h4 className="d-block col-12">Featured Recipes for Spring:</h4>
@@ -26,7 +26,7 @@ class HomeContent extends Component {
                   <h5 className="card-title">Authentic Mexican Chicken Burritos</h5>
                   <p className="card-text">This user learned to make this while on a memorable trip to Mexico.</p>
                   </div>
-                  <span className="align-self-center"><Link to="/individualrecipe/19"><div className="btn btn-primary">Discover</div></Link></span>
+                  <span className="align-self-center"><Link to="/individualrecipe/3"><div className="btn btn-primary">Discover</div></Link></span>
               </div>
             <div className="card sm-card col-lg-6">
               <img className="card-img-top img-thumbnail" src={steak_img} alt="chocolate bread" />
@@ -34,7 +34,7 @@ class HomeContent extends Component {
                 <h5 className="card-title">A Steak to Remember</h5>
                 <p className="card-text">A fancy steak that even Gordon Ramsey would approve of.</p>
               </div>
-              <span className="align-self-center"><Link to="/individualrecipe/19"><div className="btn btn-primary">Discover</div></Link></span>
+              <span className="align-self-center"><Link to="/individualrecipe/4"><div className="btn btn-primary">Discover</div></Link></span>
             </div>
           </div>
         </div>

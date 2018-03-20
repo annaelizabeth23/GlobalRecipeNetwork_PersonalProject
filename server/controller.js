@@ -12,7 +12,17 @@ module.exports = {
     
     recipeSearch: (req, res) => {
         const title = req.body.title;
-        req.app.get('db').recipe_search([title, req.body.recipe_origin]).then(recipes => {
+        req.app.get('db').recipe_search([title]).then(recipes => {
+            res.status(200).json(recipes);
+        }).catch(error => {
+            console.log('Error at recipeSearch controller', error);
+            res.status(500).json({message: 'An error occurred'})
+        })
+    },
+
+    recipeOriginSearch: (req, res) => {
+        const origin = req.body.origin;
+        req.app.get('db').recipe_origin_search([req.body.origin]).then(recipes => {
             res.status(200).json(recipes);
         }).catch(error => {
             console.log('Error at recipeSearch controller', error);

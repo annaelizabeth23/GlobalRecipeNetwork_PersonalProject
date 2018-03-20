@@ -92,6 +92,8 @@ app.get('/api/getNewRecipes', controller.getNewRecipes);
 
 app.post('/api/recipeSearch', controller.recipeSearch);
 
+app.post('/api/recipeOriginSearch', controller.recipeOriginSearch);
+
 app.post('/api/addRecipe', controller.addRecipe);
 
 app.post('/api/myAccountRecipes', controller.myAccountRecipes);

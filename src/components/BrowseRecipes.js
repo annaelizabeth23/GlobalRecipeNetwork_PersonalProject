@@ -12,7 +12,7 @@ class BrowseRecipes extends Component {
       }
       // this.recipeSearch = this.recipeSearch.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
-      
+      this.handleOriginSearchSubmit = this.handleOriginSearchSubmit.bind(this);
 }
 
 componentDidMount(){
@@ -22,15 +22,16 @@ componentDidMount(){
   });
 }
 
-// recipeSearch () {
-//   axios.get('/api/recipeSearch', {"title": this.state.title, "origin": this.state.origin}).then(response => {
-//     this.setState({recipes: response.data});
-//   });
-// }
-
 handleSubmit(event) {
   event.preventDefault();
-  axios.post('/api/recipeSearch', {"title": this.state.title.toUpperCase(), "origin": this.state.origin}).then(response => {
+  axios.post('/api/recipeSearch', {title: this.state.title.toUpperCase()}).then(response => {
+    this.setState({recipes: response.data});
+  });
+}
+
+handleOriginSearchSubmit(event) {
+  event.preventDefault();
+  axios.post('/api/recipeOriginSearch', {origin: this.state.origin}).then(response => {
     this.setState({recipes: response.data});
   });
 }
@@ -47,8 +48,8 @@ handleSubmit(event) {
           <div className="find-recipes-top-level top-level container">
             <h4>Browse Recipes</h4>
               <div className="recipe-search">
-              <div className="form-group">
-                    <label htmlFor="country-select"><h5>Filter by Recipe Country of Origin:</h5></label>
+              <form className="form-inline">
+                    <label htmlFor="country-select"><h5 className="search-label">Filter by Recipe Country of Origin:</h5></label>
                     <select className="form-control" onChange={(e) => this.setState({origin: e.target.value})}>
                         <option value="">{/*intentionally left blank*/}</option>
                         <option value="Afghanistan">Afghanistan</option>
@@ -248,16 +249,15 @@ handleSubmit(event) {
                         <option value="Zambia">Zambia</option>
                         <option value="Zimbabwe">Zimbabwe</option>
                     </select>
-                </div>
-                <form className="form-group" role="search" onSubmit={this.handleSubmit}>
-                  <label htmlFor="recipe-search"><h5>Search by Recipe Name:</h5></label>
                     <div className="input-group add-on">
-                      <input className="form-control" placeholder="Search" name="srch-term" id="srch-term" type="text" onChange={(e) => this.setState({title: e.target.value})} />
-                      {this.state.title}
-                      {this.state.origin}
-                      <div className="input-group-btn">
-                        <button className="btn btn-default" type="submit" value="Submit">Search</button>
-                      </div>
+                      <button className="btn btn-default search-button" type="submit" value="Submit" onClick={this.handleOriginSearchSubmit}>Search By Origin</button>
+                    </div>
+                </form>
+                <form className="form-inline">
+                  <label htmlFor="recipe-search"><h5 className="search-label">Search by Recipe Name:</h5></label>
+                    <div className="input-group add-on">
+                      <input className="form-control" name="srch-term" id="srch-term" type="text" onChange={(e) => this.setState({title: e.target.value.toUpperCase()})} />
+                        <button className="btn btn-default search-button" type="submit" value="Submit" onClick={this.handleSubmit}>Search by Recipe Title</button>
                     </div>
                   </form>
               </div>

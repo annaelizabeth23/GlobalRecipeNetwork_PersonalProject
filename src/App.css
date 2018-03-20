@@ -41,6 +41,10 @@ nav {
   border-color: #160C28;
 }
 
+.search-button {
+  display: inline-block;
+}
+
 .media-obj-img {
   width: 30%;
 }
@@ -146,3 +150,12 @@ form {
 .recipe-form {
   padding: 10px;
 }
+
+.form-inline {
+  padding: 5px;
+}
+
+.search-label {
+  margin-right: 10px;
+}
+

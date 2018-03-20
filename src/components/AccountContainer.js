@@ -28,6 +28,7 @@ class AccountContainer extends Component {
                 loading: false
             });
         })
+        
     }
 
     
@@ -38,9 +39,7 @@ class AccountContainer extends Component {
             <div>
             {loading && <div>Loading...</div>}
             {/* //above is short circuiting in jsx because no ifs allowed in jsx */}
-            {this.props.user && <MyAccount/>
-            }
-            {message && <div>{this.state.message}</div>}
+            {this.props.user ? <MyAccount/> : <h5>Please log in to view your account</h5>}
             </div>
         )
     }

@@ -35,7 +35,7 @@ class AddARecipeContainer extends Component {
             <div>
             {notLoggedIn && <div>Log in to add a recipe.</div>}
             {/* //above is short circuiting in jsx because no ifs allowed in jsx */}
-            {this.props.user && <AddARecipe />}
+            {this.props.user ? <AddARecipe /> : <h5>Please log in to add a recipe</h5>}
             </div>
         )
     }

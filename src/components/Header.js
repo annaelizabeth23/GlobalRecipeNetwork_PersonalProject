@@ -7,7 +7,7 @@ class Header extends Component {
     return (
       <div>
         <nav className="navbar navbar-expand-lg navbar-light d-none d-lg-flex container-fluid">
-          <a className="navbar-brand" href="#"><h1 className="header-text"><span id="header-first-letter">G</span>lobal<span id="header-first-letter"> R</span>ecipe<span id="header-first-letter"> N</span>etwork</h1></a>
+          <Link to="/"><div className="navbar-brand"><h1 className="header-text"><span id="header-first-letter">G</span>lobal<span id="header-first-letter"> R</span>ecipe<span id="header-first-letter"> N</span>etwork</h1></div></Link>
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div className="navbar-nav">
               <Link to="/"><div className="nav-item nav-link active">Home <span className="sr-only">(current)</span></div></Link>

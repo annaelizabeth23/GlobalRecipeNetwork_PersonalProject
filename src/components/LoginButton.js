@@ -3,8 +3,15 @@ import axios from 'axios';
 import {connect} from 'react-redux';
 import { fetchUserData } from '../reducer'
 import {logoutUser} from '../reducer';
+import {Link} from 'react-router-dom';
 
 class LoginButton extends Component {
+  constructor() {
+    super();
+    this.state= {
+        
+    }
+  }
 
 login() {
   window.location = `https://${process.env.REACT_APP_AUTH0_DOMAIN}/login?client=${process.env.REACT_APP_AUTH0_CLIENT_ID}&scope=openid%20profile%20email&redirect_uri=${encodeURIComponent(window.location.origin)}/auth/callback`
@@ -18,6 +25,14 @@ logout() {
   });
 }
 
+guestLogin() {
+  console.log("test login function on LoginButton component");
+  axios.get('/api/guestLogin').then((response) => {
+  this.props.fetchUserData(response.data.user);
+  
+  })
+}
+
 
   render() {
     
@@ -25,7 +40,7 @@ logout() {
       <div className="btn-group flex-column" id={this.props.id} role="group" aria-label="login and logout buttons">
       <button type="button" className="btn btn-secondary btn-sm" onClick={this.login}>Login/Register</button>
       <button type="button" className="btn btn-secondary btn-sm" onClick={this.logout.bind(this)}>Logout</button>
-      
+      <Link to="/"><button type="button" className="btn btn-secondary btn-sm" onClick={this.guestLogin.bind(this)}>Guest/Test Login</button></Link>
     </div>
     );
   }

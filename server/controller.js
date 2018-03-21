@@ -1,6 +1,17 @@
 const axios = require('axios');
 
 module.exports = {
+    guestLogin: (req, res) => {
+        const user = {
+            name: 'Guest Login',
+            id: 'defaultguestuser',
+            picture: 'https://images.pexels.com/photos/39604/information-information-board-message-business-card-39604.png?auto=compress&cs=tinysrgb&h=750&w=1260'
+          }
+
+        req.session.user = user;
+        res.status(200).json(user);
+    },
+
     getNewRecipes: (req, res) => {
         req.app.get('db').get_newest_recipes().then(recipes => {
         // console.log('recipes', recipes)

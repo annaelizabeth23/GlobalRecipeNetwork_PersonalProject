@@ -88,6 +88,8 @@ app.post('/api/logout', controller.logoutUser);
   app.get('/api/user-data', controller.getUser);
   //similar to how we did it in the full stack review- using middleware to check that user is logged in, then getting the user data from the session
 
+app.get('/api/guestLogin', controller.guestLogin);
+
 app.get('/api/getNewRecipes', controller.getNewRecipes);
 
 app.post('/api/recipeSearch', controller.recipeSearch);

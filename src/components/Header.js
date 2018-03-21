@@ -10,7 +10,7 @@ class Header extends Component {
           <Link to="/"><div className="navbar-brand"><h1 className="header-text"><span id="header-first-letter">G</span>lobal<span id="header-first-letter"> R</span>ecipe<span id="header-first-letter"> N</span>etwork</h1></div></Link>
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div className="navbar-nav">
-              <Link to="/"><div className="nav-item nav-link active">Home <span className="sr-only">(current)</span></div></Link>
+              <Link to="/"><div className="nav-item nav-link">Home <span className="sr-only">(current)</span></div></Link>
                 <Link to="/aboutus"><div className="nav-item nav-link">About GRN</div></Link>
                 <Link to="/browserecipes"><div className="nav-item nav-link">Browse Recipes</div></Link>
                 <Link to="/addarecipe"><div className="nav-item nav-link">Add a Recipe</div></Link>

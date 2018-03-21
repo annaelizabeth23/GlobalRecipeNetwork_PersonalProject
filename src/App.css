@@ -109,9 +109,10 @@ form {
   margin-left: 15%;
 } */
 
-.my-account-img {
+.account-img {
   display: inline-block;
   vertical-align: top;
+  max-height: 150px;
 }
 
 /* .my-contributions {

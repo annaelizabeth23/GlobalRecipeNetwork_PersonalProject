@@ -11,8 +11,6 @@ Global Recipe Network is what I chose to create as my personal project during my
 - PostgreSQL
 - Heroku Database
 
-Note: This project is in progress, expected completion date of April 2018
-
 
 
 <!-- This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).

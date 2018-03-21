@@ -1,9 +1,10 @@
 # Welcome to my project: Global Recipe Network
 
-Global Recipe Network is what I chose to create as my personal project during my time at DevMountain. It is a recipe sharing site that is centered around the geographical origin of the recipes.
+Global Recipe Network is a personal project I have been working on to practice React, Redux, and Node. It is a social-media type site that allows users to create, read, update, and delete recipes.
 
 ## Tech Stack:
 - React
+- Redux
 - Bootstrap
 - Axios
 - Express

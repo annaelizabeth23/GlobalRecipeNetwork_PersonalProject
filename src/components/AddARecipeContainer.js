@@ -12,7 +12,6 @@ class AddARecipeContainer extends Component {
         }
     }
 
-
     componentDidMount () {
         this.setState({notLoggedIn: true});
         axios.get('/api/user-data').then(response => {
@@ -26,11 +25,9 @@ class AddARecipeContainer extends Component {
             });
         })
     }
-
     
     render(){
         const {notLoggedIn} = this.state;
-
         return (
             <div>
             {notLoggedIn && <div>Log in to add a recipe.</div>}

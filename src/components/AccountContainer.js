@@ -8,11 +8,9 @@ class AccountContainer extends Component {
     constructor() {
         super();
         this.state = {
-            loading: false,
-            message: null
+            loading: false
         }
     }
-
 
     componentDidMount () {
         this.setState({loading: true});
@@ -24,28 +22,25 @@ class AccountContainer extends Component {
             //login is from our reducer and map dispatch to props
         }).catch(error => {
             this.setState({
-                message: 'No account to view, please log in or register.',
                 loading: false
             });
         })
         
     }
-
     
     render(){
-        const {loading, message} = this.state;
+        const {loading} = this.state;
 
         return (
             <div>
             {loading && <div>Loading...</div>}
-            {/* //above is short circuiting in jsx because no ifs allowed in jsx */}
             {this.props.user ? <MyAccount/> : <h5>Please log in to view your account</h5>}
             </div>
         )
     }
 }
 
-
+//Connecting this component to Redux to access globalstate:
 const mapStateToProps = store => {
     return {
         user: store.user

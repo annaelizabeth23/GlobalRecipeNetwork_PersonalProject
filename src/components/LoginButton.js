@@ -40,7 +40,7 @@ guestLogin() {
       <div className="btn-group flex-column" id={this.props.id} role="group" aria-label="login and logout buttons">
       <button type="button" className="btn btn-secondary btn-sm" onClick={this.login}>Login/Register</button>
       <button type="button" className="btn btn-secondary btn-sm" onClick={this.logout.bind(this)}>Logout</button>
-      <Link to="/"><button type="button" className="btn btn-secondary btn-sm" onClick={this.guestLogin.bind(this)}>Guest/Test Login</button></Link>
+      <Link to="/"><button type="button" className="btn btn-secondary btn-sm guest-login-button d-none d-md-inline-block" onClick={this.guestLogin.bind(this)}>Guest/Test Login</button></Link>
     </div>
     );
   }

@@ -21,7 +21,7 @@ logout() {
   console.log("logged out fired");
   axios.post('/api/logout').then((response) => {
     this.props.logoutUser(response.data.user);
-    console.log('logged out user');
+    alert('You are logged out');
   });
 }
 
@@ -29,7 +29,7 @@ guestLogin() {
   console.log("test login function on LoginButton component");
   axios.get('/api/guestLogin').then((response) => {
   this.props.fetchUserData(response.data.user);
-  
+  alert('Welcome. You are logged in as a guest user.');
   })
 }
 
